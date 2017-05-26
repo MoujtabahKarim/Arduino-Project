@@ -1,0 +1,41 @@
+int xTicks = 0; //xTicks and yTicks never get reset
+int yTicks = 0;
+
+void checkPosition() {
+  int xCounter = xTicks + 1;
+  int yCounter = yTicks + 1;
+  int Counter = 0;
+  
+  if (Counter < xCounter || Counter < yCounter)
+    Counter++;
+    
+  else if (Counter >= xCounter && currentDirection == 1) // Going East
+    xTicks++;
+    
+  else if (Counter >= yCounter && currentDirection == 2) // Going South
+    yTicks++;
+    
+  else if (Counter >= xCounter && currentDirection == 3) // Going West
+    xTicks--;
+  
+  else if (Counter >= yCounter && currentDirection == 0) // Going North
+    yTicks--;
+}
+
+void checkEdge() {
+  if(yTicks == 0 || yTicks == 3) {  //ASSUMING THE BOARD IS 4 BLACK LINES HORIZONTAL
+    if (currentDirection == 0) // Facing North
+      turnRight();
+
+    else if (currentDirection == 2) // Facing South
+      turnLeft();
+  }
+
+  else if(xTicks == 0 || xTicks == 6) {  //ASSUMING THE BOARD IS 7 BLACK LINES VERTICAL
+    if (currentDirection == 1) // Facing East
+      turnRight();
+
+    else if (currentDirection == 3) // Facing West
+      turnLeft();
+  }
+}
